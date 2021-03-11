@@ -1,0 +1,13 @@
+html, body {
+  background-color: red;
+  color: white;
+  margin: 0;
+}
+
+div {
+  color: white; 
+}
+
+div {
+  background-color: red; 
+}
