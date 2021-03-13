@@ -1,10 +1,46 @@
 html, body {
-  background-color: red;
-  color: white;
+  background-color: #cccccc;
   margin: 0;
+  color: #336699;
+  font-family: 'Oswald', sans-serif;
 }
 
 .container-fluid {
-  background-color: red; 
-  color: white; 
+  background-color: #cccccc; 
+  color: #336699;
+  font-weight: bold; 
+  font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+  padding: 2rem; 
+}
+
+.submit-button {
+  display: block;
+  border-radius: 2px; 
+  background-color: #F7882F; 
+  border-color: transparent; 
+  font-weight: bold; 
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem; 
+  line-height: 1.5;
+  color: #336699;
+}
+
+.submit-button:hover {
+  background-color: #cc6600; 
+}
+
+.submit-button:focus {
+  background-color: #cc6600;
+  border-color: transparent;
+  outline-color: transparent;
+}
+
+.submit-button:active {
+  background-color: #cc6600;
+  border-color: transparent;
+  outline-color: transparent;
 }
