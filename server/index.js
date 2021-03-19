@@ -19,8 +19,8 @@ const app = express();
 //}); 
 
 const conn = mongoose.createConnection(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useNewUrlParser: true
 }); 
 
 // middleware
@@ -32,9 +32,9 @@ app.use(express.static('public'));
 // initialize gfs
 let gfs;
 conn.once('open', () => {
+  // initialize stream
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('images'); 
-  // all set!
 }); 
 
 // create storage engine 
@@ -57,7 +57,7 @@ const storage = new GridFsStorage({
   }
 });
 
-const image = multer({ storage }); 
+const upload = multer({ storage }); 
 
 // get main page
 app.get('/', (req, res) => {
@@ -65,6 +65,10 @@ app.get('/', (req, res) => {
 });
 
 // post image to db
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.json({file: req.file}); 
+  //res.redirect('/'); 
+});
 
 
 const port = process.env.PORT; 
