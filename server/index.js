@@ -66,9 +66,33 @@ app.get('/', (req, res) => {
 
 // post image to db
 app.post('/upload', upload.single('file'), (req, res) => {
-  res.json({file: req.file}); 
-  //res.redirect('/'); 
+  //res.json({file: req.file}); 
+  res.redirect('/'); 
 });
+
+// get all images
+app.get('/admin', async (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    if(!files || files.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist'
+      });
+    }
+    return res.json(files); 
+  });
+}); 
+
+// get files by id 
+app.get('/admin', async (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    if(!files || files.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist'
+      });
+    }
+    return res.json(files); 
+  });
+}); 
 
 
 const port = process.env.PORT; 
