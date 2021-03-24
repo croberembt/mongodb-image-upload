@@ -60,6 +60,24 @@ const storage = new GridFsStorage({
 const upload = multer({ storage }); 
 
 // get main page
+/*app.get('/', (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    if (!files || files.length === 0) {
+      res.render('index', {files: false});
+    } else {
+      files.map(file => {
+        if (file.contentType ==='image/jpeg' || file.contentType === 'image/png') {
+          file.isImage = true; 
+        } else {
+          file.isImage = false; 
+        }
+      });
+      res.render('index', {files: files});
+    }
+    return res.json(files); 
+  });
+});*/
+
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -73,7 +91,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 // get all images
 app.get('/admin', async (req, res) => {
   gfs.files.find().toArray((err, files) => {
-    if(!files || files.length === 0) {
+    if (!files || files.length === 0) {
       return res.status(404).json({
         err: 'No files exist'
       });
@@ -82,17 +100,36 @@ app.get('/admin', async (req, res) => {
   });
 }); 
 
-// get files by id 
-app.get('/admin', async (req, res) => {
-  gfs.files.find().toArray((err, files) => {
-    if(!files || files.length === 0) {
+// get file by filename 
+app.get('/files/:filename', async (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    if (!file) {
       return res.status(404).json({
-        err: 'No files exist'
+        err: 'No file matching that filename exists'
       });
     }
-    return res.json(files); 
+    return res.json(file); 
   });
 }); 
+
+// get file by filename and display 
+app.get('/image/:filename', async (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    if (!file) {
+      return res.status(404).json({
+        err: 'No file matching that filename exists'
+      });
+    } else if (file.contentType === 'image/jpeg'|| file.contentType === 'image/png') {
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res); 
+    } else {
+      return res.status(404).json({
+        err: 'Not an image file'
+      }); 
+    }
+  });
+});
+
 
 
 const port = process.env.PORT; 
