@@ -1,15 +1,8 @@
-html, body {
-  background-color: #cccccc;
-  margin: 0;
-  color: #336699;
+html, body, div, .container {
+  background-color: #28784D;
+  color: #032436;
   font-family: 'Oswald', sans-serif;
-}
-
-.container-fluid {
-  background-color: #cccccc; 
-  color: #336699;
   font-weight: bold; 
-  font-family: 'Oswald', sans-serif;
 }
 
 h1 {
@@ -20,7 +13,7 @@ h1 {
   width: 100%;
   display: inline-block;
   font-weight: 400;
-  color: #336699;
+  color: #032436;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -38,20 +31,19 @@ h1 {
 
 .btn-secondary {
   width: 100%;
-  color: #336699;
-  background-color:#F7882F;
-  border-color: #F7882F;
+  background-color:#535993;
+  border-color: #535993;
 }
 
 .btn-secondary:hover {
-  color: #336699;
-  background-color: #cc6600;
-  border-color: #cc6600;
+  color: #477187;
+  background-color: #191F58;
+  border-color: #191F58;
 }
 
 .btn-secondary:focus, .btn-secondary.focus {
-  color: #336699;
-  background-color: #cc6600;
-  border-color: #cc6600;
+  color: #477187;
+  background-color: #191F58;
+  border-color: #191F58;
   box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
 }
