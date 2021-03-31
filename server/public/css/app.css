@@ -32,6 +32,18 @@ h1 {
   box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
 }
 
+.btn-danger {
+  display: block;
+  width: 90%;
+  margin: auto;
+}
+
 .card {
   background-color: black;
 }
+
+.form-div {
+  background-color: black;
+  margin-top: 2rem;
+}
+

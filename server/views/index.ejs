@@ -37,6 +37,11 @@
               <% } else { %>
                 <%= file.filename %>
               <% } %>
+              <div class='form-div'>
+                <form method='POST' action='/files/<%= file._id %>?_method=DELETE'>
+                  <button class='btn btn-danger'>DELETE</button>
+                </form>
+              </div>
             </div>
           <% }) %>
         <% } else { %>
